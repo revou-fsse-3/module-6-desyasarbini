@@ -1,6 +1,7 @@
 from flask import Flask
 from app.route import employee_route
-from app.utils.database import db
+from app.utils.database import db, migrate
+from app.models import employee, animal
 import os
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"{DATABASE_TYPE}://{DATABASE_USER}:{DAT
 #     return 'Hello world!'
 
 db.init_app(app)
+migrate.init_app(app, db)
 
 # untuk register blueprint
 app.register_blueprint(employee_route.employee_blueprint, url_prefix='/employee')
