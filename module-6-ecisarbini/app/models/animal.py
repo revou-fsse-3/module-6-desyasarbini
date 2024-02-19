@@ -3,8 +3,8 @@ from app.utils.database import db
 class Animal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    birthdate = db.Column(db.Integer, primary_key=True)
-    
+    birthdate = db.Column(db.Integer, primary_key=False)
+        
     def as_dict(self):
         return {
                 'id': self.id, 

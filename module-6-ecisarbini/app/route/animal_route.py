@@ -1,38 +1,24 @@
-from flask import Blueprint, request
-from app.utils.database import db
-from app.models.animal import Animal
+from flask import Blueprint
+from app.controller.animal_controller import (
+    list_animal, 
+    get_animal,
+    update_animal,
+    create_animal,
+    search_animal,
+    delete_animal
+    )
 
 animal_blueprint = Blueprint('animal_endpoint', __name__)
 
-@animal_blueprint.route("/", methods=['GET'])
-def get_list_animal():
-    try:
-        animal = Animal.query.all()
+animal_blueprint.route("/", methods=['GET'])(list_animal)
 
-        return [animal.as_dict() for animal in animal], 200
-    except Exception as e:
-        return e, 500
+animal_blueprint.route("/<int:animal_id>", methods=['GET'])(get_animal)
 
-@animal_blueprint.route("/", methods=['POST'])
-def create_animal():
-    try:
-        data = request.json
-        print(data)
+animal_blueprint.route("/<int:animal_id>", methods=['PUT'])(update_animal)
 
-        animal = Animal()
-        animal.name = data['name']
-        animal.birthdate = data['birthdate']
-        db.session.add(animal)
-        db.session.commit()
+animal_blueprint.route("/", methods=['POST'])(create_animal)
 
-        return 'berhasil', 200
-    except Exception as e:
-        return e, 500
-    
-@animal_blueprint.route("/<int:animal_id>", methods=['PUT'])
-def update_animal(animal_id):
-        return str(animal_id), 200
+animal_blueprint.route("/search", methods=['GET'])(search_animal)
 
-@animal_blueprint.route("/<int:animal_id>", methods=['DELETE'])
-def delete_employee(animal_id):
-    return str(animal_id)
+
+animal_blueprint.route("/<int:animal_id>", methods=['DELETE'])(delete_animal)
