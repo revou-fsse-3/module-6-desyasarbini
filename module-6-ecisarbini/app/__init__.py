@@ -1,7 +1,6 @@
 from flask import Flask
 from app.route import employee_route, animal_route
 from app.utils.database import db, migrate
-from app.models import employee, animal
 import os
 
 app = Flask(__name__)

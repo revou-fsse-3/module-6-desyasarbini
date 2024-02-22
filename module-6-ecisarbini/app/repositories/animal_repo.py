@@ -16,3 +16,8 @@ class Animal_repo:
         animal_obj.birthdate = animal.birthdate
 
         db.session.commit()
+    
+    # def create_animal(self, animal):
+    #     db.session.add(animal)
+    #     db.session.commit()
+    #     return animal
