@@ -20,5 +20,4 @@ animal_blueprint.route("/", methods=['POST'])(create_animal)
 
 animal_blueprint.route("/search", methods=['GET'])(search_animal)
 
-
 animal_blueprint.route("/<int:animal_id>", methods=['DELETE'])(delete_animal)

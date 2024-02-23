@@ -16,8 +16,10 @@ class Animal_repo:
         animal_obj.birthdate = animal.birthdate
 
         db.session.commit()
-    
-    # def create_animal(self, animal):
-    #     db.session.add(animal)
-    #     db.session.commit()
-    #     return animal
+
+    def delete_animal(self,id):
+        animal_obj = Animal.query.get(id)
+
+        db.session.delete(animal_obj)
+        db.session.commit()
+        return animal_obj

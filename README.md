@@ -18,3 +18,11 @@ https://documenter.getpostman.com/view/32144902/2sA2r9UN1d
    `poetry add flask-SQLAlchemy`
 
 etc.
+
+## Documentation coverage for testing
+
+![coverage unit testing](./module-6-ecisarbini/assets/coverage_testing.png)
+
+## Testing Results
+
+![unit testing results](./module-6-ecisarbini/assets/testing_results.png)

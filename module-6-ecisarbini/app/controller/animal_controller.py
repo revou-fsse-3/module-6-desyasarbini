@@ -93,13 +93,24 @@ def search_animal():
     
 def delete_animal(animal_id):
     try:
-        animal = Animal.query.get(animal_id)
+        animal_service = Animal_service() 
+        animal = animal_service.delete_animal(animal_id)
 
-        if not animal:
-            return 'Animal not found', NOT_FOUND
-        db.session.delete(animal)
-        db.session.commit()
-
-        return 'Animal deleted successful', 202
+        if animal == "Animal not found":
+            return api_response (
+                status_code = 404,
+                message = animal,
+                data = "no data"
+            )
+        return api_response (
+            status_code = 200,
+            message = "deleted",
+            data = animal
+        )
+    
     except Exception as e:
-        return str(e), 500
+        return api_response (
+            status_code = 500,
+            message = str(e),
+            data = {}
+        )
